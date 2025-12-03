@@ -37,39 +37,127 @@
     }
 
     @media (max-height: 750px) {
-      .scale-wrapper {
-        transform: scale(0.85);
-      }
+      .scale-wrapper { transform: scale(0.85); }
     }
 
     @media (max-height: 650px) {
-      .scale-wrapper {
-        transform: scale(0.75);
-      }
+      .scale-wrapper { transform: scale(0.75); }
     }
 
     @media (max-height: 550px) {
-      .scale-wrapper {
-        transform: scale(0.65);
-      }
+      .scale-wrapper { transform: scale(0.65); }
     }
 
     @media (max-height: 460px) {
-      .scale-wrapper {
-        transform: scale(0.55);
-      }
+      .scale-wrapper { transform: scale(0.55); }
     }
 
     @media (max-height: 380px) {
-      .scale-wrapper {
-        transform: scale(0.48);
-      }
+      .scale-wrapper { transform: scale(0.48); }
     }
 
     /* width scaling fallback */
     @media (max-width: 350px) {
-      .scale-wrapper {
-        transform: scale(0.82);
+      .scale-wrapper { transform: scale(0.82); }
+    }
+
+    /* Profil-Ring Glow */
+    .profile-ring {
+      animation: ringGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes ringGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.0);
+        opacity: 0.5;
+      }
+      50% {
+        box-shadow: 0 0 18px 4px rgba(250, 204, 21, 0.55);
+        opacity: 1;
+      }
+    }
+
+    /* Link-Karten Microinteraction */
+    .link-card {
+      position: relative;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from 180deg,
+        rgba(250, 204, 21, 0.0),
+        rgba(250, 204, 21, 0.7),
+        rgba(245, 158, 11, 0.0)
+      );
+      opacity: 0;
+      filter: blur(10px);
+      z-index: -1;
+      transition: opacity 0.45s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      border-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-card:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Share-Button Microinteraction */
+    .share-button {
+      position: relative;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .share-button.share-clicked i {
+      animation: sharePop 0.35s ease;
+    }
+
+    .share-button.shared::after {
+      content: "Link kopiert";
+      position: absolute;
+      bottom: -1.8rem;
+      right: 50%;
+      transform: translateX(50%);
+      font-size: 0.7rem;
+      color: #1A1A1A;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.15rem 0.4rem;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      white-space: nowrap;
+    }
+
+    @keyframes sharePop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Weniger Bewegung für motion-sensitive User */
+    @media (prefers-reduced-motion: reduce) {
+      .profile-ring {
+        animation: none;
       }
     }
   </style>
@@ -88,7 +176,11 @@
 
       <!-- Header -->
       <header class="flex w-full items-center justify-end pb-2">
-        <button class="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/30 text-[#1A1A1A] shadow-lg backdrop-blur-md transition hover:scale-105 active:scale-95">
+        <button
+          id="shareButton"
+          class="share-button flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/30 text-[#1A1A1A] shadow-lg backdrop-blur-md hover:scale-105 active:scale-95"
+          type="button"
+        >
           <i class="fa-solid fa-share-from-square text-xl"></i>
         </button>
       </header>
@@ -96,9 +188,11 @@
       <!-- Profile Section -->
       <div class="flex flex-col items-center text-center pt-2">
         <div class="relative">
-          <div class="aspect-square h-32 w-32 rounded-full bg-cover bg-center shadow-2xl"
-               style='background-image: url("profilbild.jpg");'
-          <div class="absolute inset-[-4px] rounded-full ring-4 ring-white/50"></div>
+          <div
+            class="aspect-square h-32 w-32 rounded-full bg-cover bg-center shadow-2xl"
+            style='background-image: url("profilbild.jpg");'
+          ></div>
+          <div class="absolute inset-[-4px] rounded-full ring-4 ring-white/50 profile-ring"></div>
         </div>
 
         <p class="text-[#1A1A1A] text-[clamp(18px,3vw,22px)] font-bold leading-tight tracking-wide mt-4">
@@ -117,8 +211,7 @@
       <!-- Buttons -->
       <div class="flex flex-col gap-4 pt-6 pb-4">
 
-        <!-- Button -->
-        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+        <a class="link-card flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3"
            href="https://www.youtube.com/reisegruppesuff" target="_blank" rel="noopener noreferrer">
           <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
             <i class="fa-brands fa-youtube text-xl text-[#1A1A1A]"></i>
@@ -126,7 +219,7 @@
           <span class="pl-4 font-bold text-[#1A1A1A] text-base">Reisegruppe Marci</span>
         </a>
 
-        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+        <a class="link-card flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3"
            href="https://www.instagram.com/reisegruppesuff" target="_blank" rel="noopener noreferrer">
           <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
             <i class="fa-brands fa-instagram text-xl text-[#1A1A1A]"></i>
@@ -134,7 +227,7 @@
           <span class="pl-4 font-bold text-[#1A1A1A] text-base">reisegruppemarci</span>
         </a>
 
-        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+        <a class="link-card flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3"
            href="https://tiktok.com/@reisegruppemarci" target="_blank" rel="noopener noreferrer">
           <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
             <i class="fa-brands fa-tiktok text-xl text-[#1A1A1A]"></i>
@@ -142,7 +235,7 @@
           <span class="pl-4 font-bold text-[#1A1A1A] text-base">@reisegruppemarci</span>
         </a>
 
-        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+        <a class="link-card flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3"
            href="mailto:hi@reisegruppemarci.de">
           <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
             <i class="fa-solid fa-envelope text-xl text-[#1A1A1A]"></i>
@@ -150,7 +243,7 @@
           <span class="pl-4 font-bold text-[#1A1A1A] text-base">hi@reisegruppemarci.de</span>
         </a>
 
-        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+        <a class="link-card flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3"
            href="tel:+4917644795193">
           <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
             <i class="fa-solid fa-phone text-xl text-[#1A1A1A]"></i>
@@ -167,5 +260,47 @@
 
     </div>
   </div>
+
+  <!-- Share-Button Logik -->
+  <script>
+    (function () {
+      const shareBtn = document.getElementById("shareButton");
+      if (!shareBtn) return;
+
+      shareBtn.addEventListener("click", async () => {
+        const shareData = {
+          title: "Reisegruppemarci Links",
+          text: "Hier sind alle Links von @reisegruppemarci",
+          url: window.location.href
+        };
+
+        // kleine visuelle Reaktion
+        shareBtn.classList.add("share-clicked");
+        setTimeout(() => shareBtn.classList.remove("share-clicked"), 320);
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (err) {
+            // User abgebrochen – einfach still ignorieren
+          }
+        }
+
+        // Fallback: in Zwischenablage kopieren + kleines Label
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(shareData.url);
+            shareBtn.classList.add("shared");
+            setTimeout(() => shareBtn.classList.remove("shared"), 1200);
+          } else {
+            alert("Link: " + shareData.url);
+          }
+        } catch (e) {
+          alert("Link: " + shareData.url);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
