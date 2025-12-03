@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Link Page</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Google Font: Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ["Outfit", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden; /* kein Scrollen */
+    }
+
+    /* --- RESCALING WRAPPER --- */
+    .scale-wrapper {
+      transform-origin: top center;
+    }
+
+    @media (max-height: 750px) {
+      .scale-wrapper {
+        transform: scale(0.85);
+      }
+    }
+
+    @media (max-height: 650px) {
+      .scale-wrapper {
+        transform: scale(0.75);
+      }
+    }
+
+    @media (max-height: 550px) {
+      .scale-wrapper {
+        transform: scale(0.65);
+      }
+    }
+
+    @media (max-height: 460px) {
+      .scale-wrapper {
+        transform: scale(0.55);
+      }
+    }
+
+    @media (max-height: 380px) {
+      .scale-wrapper {
+        transform: scale(0.48);
+      }
+    }
+
+    /* width scaling fallback */
+    @media (max-width: 350px) {
+      .scale-wrapper {
+        transform: scale(0.82);
+      }
+    }
+  </style>
+</head>
+
+<body class="font-display">
+  <div class="relative flex h-screen w-full justify-center items-start bg-gradient-to-b from-[#FFF7C7] to-[#FFFDEF] overflow-hidden">
+
+    <!-- Background Blobs -->
+    <div class="absolute top-1/4 left-1/4 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/20 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 h-64 w-64 translate-x-1/2 translate-y-1/2 rounded-full bg-white/30 blur-3xl"></div>
+    <div class="absolute top-10 right-0 h-48 w-48 translate-x-1/2 rounded-full bg-white/10 blur-2xl"></div>
+
+    <!-- SCALING CONTENT -->
+    <div class="scale-wrapper relative z-20 w-full max-w-md px-4 pt-4">
+
+      <!-- Header -->
+      <header class="flex w-full items-center justify-end pb-2">
+        <button class="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/30 text-[#1A1A1A] shadow-lg backdrop-blur-md transition hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-share-from-square text-xl"></i>
+        </button>
+      </header>
+
+      <!-- Profile Section -->
+      <div class="flex flex-col items-center text-center pt-2">
+        <div class="relative">
+          <div class="aspect-square h-32 w-32 rounded-full bg-cover bg-center shadow-2xl"
+               style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZ_G8vrp8yLWlW8tca7aKdVMaxvPZu27oNvls8uzg9gdc2TdY0rFORejiPnqtbNJhY1Fi5RUB7utye-aOPuieDa94LX5-GzzIHmjNwC1OlCO87cSMS494b7MWj53qsnR2Y3uVhHIhZJtStTtHUzTEFClQJPvNOQQuylRe6QelPBqvf_nX88rwcHOTTdBM4-vyBCpYybi13SfGhRheny4gbkv6NdqKwNsZI-oHd7E7eCAgGJ1V8HC8-175ZVLYSV3p3h1i43Z2J5aMx");'></div>
+          <div class="absolute inset-[-4px] rounded-full ring-4 ring-white/50"></div>
+        </div>
+
+        <p class="text-[#1A1A1A] text-[clamp(18px,3vw,22px)] font-bold leading-tight tracking-wide mt-4">
+          @reisegruppemarci
+        </p>
+
+        <p class="text-[#444]/80 text-sm leading-tight mt-1">
+          ehem. @reisegruppesuff
+        </p>
+
+        <p class="text-[#1A1A1A] text-base leading-normal mt-3">
+          Hi, das sind alle meine Links. Mehr gibt es nicht! 😊
+        </p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-col gap-4 pt-6 pb-4">
+
+        <!-- Button -->
+        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+           href="https://www.youtube.com/reisegruppesuff" target="_blank" rel="noopener noreferrer">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
+            <i class="fa-brands fa-youtube text-xl text-[#1A1A1A]"></i>
+          </div>
+          <span class="pl-4 font-bold text-[#1A1A1A] text-base">Reisegruppe Marci</span>
+        </a>
+
+        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+           href="https://www.instagram.com/reisegruppesuff" target="_blank" rel="noopener noreferrer">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
+            <i class="fa-brands fa-instagram text-xl text-[#1A1A1A]"></i>
+          </div>
+          <span class="pl-4 font-bold text-[#1A1A1A] text-base">reisegruppemarci</span>
+        </a>
+
+        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+           href="https://tiktok.com/@reisegruppemarci" target="_blank" rel="noopener noreferrer">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
+            <i class="fa-brands fa-tiktok text-xl text-[#1A1A1A]"></i>
+          </div>
+          <span class="pl-4 font-bold text-[#1A1A1A] text-base">@reisegruppemarci</span>
+        </a>
+
+        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+           href="mailto:hi@reisegruppemarci.de">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
+            <i class="fa-solid fa-envelope text-xl text-[#1A1A1A]"></i>
+          </div>
+          <span class="pl-4 font-bold text-[#1A1A1A] text-base">hi@reisegruppemarci.de</span>
+        </a>
+
+        <a class="flex h-16 items-center rounded-full border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-3 hover:scale-105 transition"
+           href="tel:+4917644795193">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/50">
+            <i class="fa-solid fa-phone text-xl text-[#1A1A1A]"></i>
+          </div>
+          <span class="pl-4 font-bold text-[#1A1A1A] text-base">+49 176 44795193</span>
+        </a>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-center pb-4">
+        <p class="text-[#1A1A1A]/80 text-sm">Page made by myself 😎</p>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>
