@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reisegruppe Marci – Impressum</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Google Font: Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- FAVICONS -->
+  <link rel="icon" type="image/jpeg" href="profilbild.jpg" />
+  <link rel="apple-touch-icon" href="profilbild.jpg" />
+  <link rel="shortcut icon" href="profilbild.jpg" />
+  <link rel="mask-icon" href="profilbild.jpg" color="#cfb017" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ["Outfit", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      overflow-x: hidden;  /* kein horizontales Scrollen */
+      overflow-y: auto;    /* vertikales Scrollen erlaubt */
+    }
+
+    /* Wrapper für Inhalt – hier keine Skalierung nötig */
+    .scale-wrapper {
+      transform-origin: top center;
+    }
+
+    /* Profil-Ring Glow */
+    .profile-ring {
+      animation: ringGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes ringGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.0);
+        opacity: 0.5;
+      }
+      50% {
+        box-shadow: 0 0 18px 4px rgba(250, 204, 21, 0.55);
+        opacity: 1;
+      }
+    }
+
+    /* Cards (Impressum-Boxen) */
+    .link-card {
+      position: relative;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from 180deg,
+        rgba(250, 204, 21, 0.0),
+        rgba(250, 204, 21, 0.7),
+        rgba(245, 158, 11, 0.0)
+      );
+      opacity: 0;
+      filter: blur(10px);
+      z-index: -1;
+      transition: opacity 0.45s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      border-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-card:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Share-Button Microinteraction */
+    .share-button {
+      position: relative;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .share-button.share-clicked i {
+      animation: sharePop 0.35s ease;
+    }
+
+    .share-button.shared::after {
+      content: "Link kopiert";
+      position: absolute;
+      bottom: -1.8rem;
+      right: 50%;
+      transform: translateX(50%);
+      font-size: 0.7rem;
+      color: #1A1A1A;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.15rem 0.4rem;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      white-space: nowrap;
+    }
+
+    @keyframes sharePop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Weniger Bewegung für motion-sensitive User */
+    @media (prefers-reduced-motion: reduce) {
+      .profile-ring {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-display">
+  <div class="relative flex min-h-screen w-full justify-center items-start bg-gradient-to-b from-[#FFF7C7] to-[#FFFDEF] overflow-hidden">
+
+    <!-- Background Blobs -->
+    <div class="absolute top-1/4 left-1/4 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/20 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 h-64 w-64 translate-x-1/2 translate-y-1/2 rounded-full bg-white/30 blur-3xl"></div>
+    <div class="absolute top-10 right-0 h-48 w-48 translate-x-1/2 rounded-full bg-white/10 blur-2xl"></div>
+
+    <!-- SCALING CONTENT -->
+    <div class="scale-wrapper relative z-20 w-full max-w-md px-4 pt-4 pb-8">
+
+      <!-- Header -->
+      <header class="flex w-full items-center justify-between pb-4">
+        <!-- Zurück zu den Links -->
+        <a
+          href="/"
+          class="flex items-center gap-2 rounded-full border border-white/60 bg-white/50 px-3 py-1 text-xs font-medium text-[#1A1A1A] shadow-sm backdrop-blur-md hover:scale-105 active:scale-95 transition"
+        >
+          <i class="fa-solid fa-chevron-left text-[10px]"></i>
+          <span>Zu allen Links</span>
+        </a>
+
+        <!-- Share Button -->
+        <button
+          id="shareButton"
+          class="share-button flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/30 text-[#1A1A1A] shadow-lg backdrop-blur-md hover:scale-105 active:scale-95"
+          type="button"
+        >
+          <i class="fa-solid fa-share-from-square text-lg"></i>
+        </button>
+      </header>
+
+      <!-- Profile Section -->
+      <div class="flex flex-col items-center text-center pt-2">
+        <div class="relative">
+          <div
+            class="aspect-square h-28 w-28 rounded-full bg-cover bg-center shadow-2xl"
+            style='background-image: url("profilbild.jpg");'
+          ></div>
+          <div class="absolute inset-[-4px] rounded-full ring-4 ring-white/50 profile-ring"></div>
+        </div>
+
+        <p class="text-[#1A1A1A] text-[clamp(18px,3vw,22px)] font-bold leading-tight tracking-wide mt-4">
+          @reisegruppemarci
+        </p>
+
+        <p class="text-[#444]/80 text-sm leading-tight mt-1">
+          ehem. @reisegruppesuff
+        </p>
+
+        <p class="text-[#1A1A1A] text-sm leading-normal mt-3">
+          Impressum & gesetzliche Angaben nach § 5 TMG.
+        </p>
+      </div>
+
+      <!-- IMPRESSUM-CARDS -->
+      <div class="flex flex-col gap-4 pt-6 text-left text-sm leading-relaxed text-[#1A1A1A]">
+
+        <!-- Anschrift -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4">
+          <h2 class="text-base font-semibold mb-1">
+            Impressum gemäß § 5 Telemediengesetz (TMG)
+          </h2>
+          <p>
+            Marcel Wojcik<br />
+            c/o Grosch Postflex #555<br />
+            Emsdettener Straße 10<br />
+            48268 Greven<br />
+            Deutschland
+          </p>
+        </section>
+
+        <!-- Kontakt -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4">
+          <h2 class="text-base font-semibold mb-1">
+            Kontakt
+          </h2>
+          <p>
+            Telefon: <a href="tel:+4917644795193" class="underline decoration-[#cfb017]/70 underline-offset-2">+49 176 44795193</a><br />
+            E-Mail: <a href="mailto:hi@marciverse.io" class="underline decoration-[#cfb017]/70 underline-offset-2">hi@marciverse.io</a>
+          </p>
+        </section>
+
+        <!-- Umsatzsteuer-ID -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4">
+          <h2 class="text-base font-semibold mb-1">
+            Umsatzsteuer-ID
+          </h2>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+            <strong>DE326033259</strong>
+          </p>
+        </section>
+
+        <!-- Redaktionell verantwortlich -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4">
+          <h2 class="text-base font-semibold mb-1">
+            Redaktionell verantwortlich
+          </h2>
+          <p>
+            Marcel Wojcik<br />
+            c/o Grosch Postflex #555<br />
+            Emsdettener Straße 10<br />
+            48268 Greven
+          </p>
+        </section>
+
+        <!-- Verbraucherstreitbeilegung -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4 mb-2">
+          <h2 class="text-base font-semibold mb-1">
+            Verbraucher­streit­beilegung / Universal­schlichtungs­stelle
+          </h2>
+          <p>
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </section>
+
+        <!-- DSA-Kontaktstelle -->
+        <section class="link-card rounded-2xl border border-white/50 bg-white/30 shadow-lg backdrop-blur-md px-4 py-4 mb-4">
+          <h2 class="text-base font-semibold mb-1">
+            Zentrale Kontaktstelle nach dem Digital Services Act (DSA)
+          </h2>
+          <p class="mb-2">
+            Zentrale Kontaktstelle für Nutzer und Behörden gemäß Art. 11, 12 DSA:
+          </p>
+          <p>
+            E-Mail: <a href="mailto:hi@marciverse.io" class="underline decoration-[#cfb017]/70 underline-offset-2">hi@marciverse.io</a><br />
+            Telefon: <a href="tel:+4917644795193" class="underline decoration-[#cfb017]/70 underline-offset-2">+49 176 44795193</a>
+          </p>
+        </section>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-center pb-2">
+        <p class="text-[#1A1A1A]/80 text-xs">Impressum für Reisegruppe Marci 😎</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Share-Button Logik -->
+  <script>
+    (function () {
+      const shareBtn = document.getElementById("shareButton");
+      if (!shareBtn) return;
+
+      shareBtn.addEventListener("click", async () => {
+        const shareData = {
+          title: "Reisegruppemarci – Impressum",
+          text: "Impressum & gesetzliche Angaben von @reisegruppemarci",
+          url: window.location.href
+        };
+
+        // kleine visuelle Reaktion
+        shareBtn.classList.add("share-clicked");
+        setTimeout(() => shareBtn.classList.remove("share-clicked"), 320);
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (err) {
+            // User abgebrochen – einfach still ignorieren
+          }
+        }
+
+        // Fallback: in Zwischenablage kopieren + kleines Label
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(shareData.url);
+            shareBtn.classList.add("shared");
+            setTimeout(() => shareBtn.classList.remove("shared"), 1200);
+          } else {
+            alert("Link: " + shareData.url);
+          }
+        } catch (e) {
+          alert("Link: " + shareData.url);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
